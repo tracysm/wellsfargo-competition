@@ -3,62 +3,50 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640">
-
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
     <title>Wellsfargo-competition by tracysm</title>
   </head>
 
   <body>
-    <a id="forkme_banner" href="https://github.com/tracysm/wellsfargo-competition">View on GitHub</a>
-    <div class="shell">
+    <div id="container">
+      <div class="inner">
 
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Wellsfargo-competition</h1>
-            <h2></h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
+        <header>
+          <h1>Wellsfargo-competition</h1>
+          <h2></h2>
+        </header>
 
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/tracysm/wellsfargo-competition/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/tracysm/wellsfargo-competition/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/tracysm/wellsfargo-competition/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/tracysm/wellsfargo-competition/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/tracysm/wellsfargo-competition" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
 
+        <hr>
 
-      <span class="banner-fix"></span>
-
-
-      <section id="main_content">
-        <p>** Wells Fargo Competition**<br>
+        <section id="main_content">
+          <p><strong>Wells Fargo Competition</strong><br>
 In this Wells Fargo Competition we were to separate the comments from the data we received from Wells Fargo that was online statements involving 4 Banks- <strong>Bank A, Bank B, Bank C, and Bank D</strong> from Twitter and Facebook.. Then, each was to be separated into <strong>positive</strong> or <strong>negative</strong> so it could be visible which bank had the most positive statements about it and which had the most negative statements about it. In society today, the internet and everything posted online is very important. A negative or positive statement about a bank can spread MUCH faster on social media rather than just spreading it by mouth. Different companies have to take this into consideration when trying to fix problems, understand the way their customers think about them, and understand how to attract more customers. The point of this website is to help companies understand what certain things about the companies are said in a positive or negative way and to help predict in the future what will be said, and what can be fixed.<br>
-This specific plot graph below shows the positive sentiment scores from each Bank. The higher the score, the more positive things said about the bank- *<em>Bank A *</em> being the highest. Also, here is some of the code used to create the plot graph.<br>
-```R meanscore = tapply(scores$score, scores$label, mean)
-df.plot = data.frame(label=names(meanscore), meanscore=meanscore)
-df.plot$labels &lt;- reorder(df.plot$label, df.plot$meanscore)</p>
+This specific plot graph below shows the positive sentiment scores from each Bank. The higher the score, the more positive things said about the bank- *<em>Bank A *</em> being the highest. Also, here is some of the code used to create the plot graph.  </p>
 
-<p>ggplot(df.plot, aes(x = factor(labels), y = meanscore, fill=labels)) +
+<pre><code>R meanscore = tapply(scores$score, scores$label, mean)
+df.plot = data.frame(label=names(meanscore), meanscore=meanscore)
+df.plot$labels &lt;- reorder(df.plot$label, df.plot$meanscore)
+
+ggplot(df.plot, aes(x = factor(labels), y = meanscore, fill=labels)) +
   geom_bar(stat="identity") +
   scale_fill_manual(values=cols[order(df.plot$meanscore)]) +
   labs(title = "Topics's Average Sentiment Score") + 
-  xlab('Topic') + ylab('Average Score')-&gt; ```
-<img src="http://imgur.com/DQ3hz4P" alt="Average Sentiment">
+  xlab('Topic') + ylab('Average Score')  
+</code></pre>
+
+<p><img src="http://imgur.com/DQ3hz4P" alt="Average Sentiment">
 Above is just the average sentiment score.. below is the negative sentiment score, putting <strong>Bank B</strong> at the highest, or the most negative comments.<br>
 <img src="http://imgur.com/vXfxtHu" alt="Average Neg Sentiment"><br>
 Another thing we did that may have worked better if we had more time is labeling a random 1000, out of the hundreds of thousands of comments, by hand.<br>
@@ -73,12 +61,12 @@ The labels I used are:<br>
 So, to do this my group put 1000 statements about the Banks into a google document and went and read all 1000 of them and labeled them according to what we thought they would create. I think with more time this would've maybe worked if we could fix the code and maybe label more.<br>
 Instead, because this didn't work I used key words to pull specific statements out of the codes.<br>
 The key words I used are:<br>
-1. ATM-any statement/comment that has the word "ATM" in it, whether it be positive or negative.
-2. Fees-any statement/comment that has the word "fees" in it, whether it be positive or negative.
-3. Fraud-any statement/comment that has the word "fraud" in it, whether it be positive or negative.
-4. Investment- any statement/comment that has the word "investment" in it, whether it be positive or negative.
-5. Job- any statement/comment that has the word "job" in it, whether it be positive or negative.
-6. Online- any statement/comment that has the word "online" in it, whether it be positive or negative.
+1. ATM-any statement/comment that has the word "ATM" in it, whether it be positive or negative.<br>
+2. Fees-any statement/comment that has the word "fees" in it, whether it be positive or negative.<br>
+3. Fraud-any statement/comment that has the word "fraud" in it, whether it be positive or negative.<br>
+4. Investment- any statement/comment that has the word "investment" in it, whether it be positive or negative.<br>
+5. Job- any statement/comment that has the word "job" in it, whether it be positive or negative.<br>
+6. Online- any statement/comment that has the word "online" in it, whether it be positive or negative.<br>
 7. Service- any statement/comment that has the word "service" in it, whether it be positive or negative.<br>
 These, instead of the labels, made it much more specific because instead of trying to read the labels and decide what they meant, (and maybe make mistakes while labeling them) and instead go through all of the data and automatically find anything with that specific word in it. This below is the main average sentiment score of all the banks.<br>
 <img src="http://i.imgur.com/F859mU9.png" alt="Average Sentiment Scores with Special Topics"><br>
@@ -103,22 +91,15 @@ ggplot(df.plot, aes(x = factor(labels), y = meanscore, fill=labels)) +
   labs(title = "Topics's Average Sentiment Score  of BankA") + 
   xlab('Topic') + ylab('Average Score')  
 </code></pre>
-      </section>
+        </section>
 
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/tracysm">tracysm</a> can be found on <a href="https://github.com/tracysm/wellsfargo-competition">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
+        <footer>
+          Wellsfargo-competition is maintained by <a href="https://github.com/tracysm">tracysm</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
 
+        
+      </div>
     </div>
-
-    
   </body>
 </html>
