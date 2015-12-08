@@ -60,7 +60,49 @@ df.plot$labels &lt;- reorder(df.plot$label, df.plot$meanscore)</p>
   xlab('Topic') + ylab('Average Score')-&gt; ```
 <img src="http://imgur.com/DQ3hz4P" alt="Average Sentiment">
 Above is just the average sentiment score.. below is the negative sentiment score, putting <strong>Bank B</strong> at the highest, or the most negative comments.<br>
-<img src="http://imgur.com/vXfxtHu" alt="Average Neg Sentiment"></p>
+<img src="http://imgur.com/vXfxtHu" alt="Average Neg Sentiment"><br>
+Another thing we did that may have worked better if we had more time is labeling a random 1000, out of the hundreds of thousands of comments, by hand.<br>
+The labels I used are:<br>
+1. Spam- Spam will be taken out of the coding because it is unnecessary and not helpful in predicting whether someone will say something positive or negative about a bank.<br>
+2. Online- Online includes the many complaints or compliments about the apps, online banking, online checks, etc.<br>
+3. Money- A kind of vague label but includes anything to do with checks, deposits, ATMs, withdrawals, cash, etc.<br>
+4. Service- Anything to do with phone calls with a bank employee, long/short phone calls, long/short wait time, negative/positive comments about employees, responses from service back to customer, etc.<br>
+5. Fraud- Anything about money being taken out that wasn't supposed to, cards being compromised, fraud notifications, etc. Almost all fraud labels are negative.
+6. Job- Anything to do with a specific bank at a specific location or someone being hired/having an interview at a place.
+7. Promo- promoting a specific bank, building of bank, area bank is in, etc. Mostly positive comments.<br>
+So, to do this my group put 1000 statements about the Banks into a google document and went and read all 1000 of them and labeled them according to what we thought they would create. I think with more time this would've maybe worked if we could fix the code and maybe label more.<br>
+Instead, because this didn't work I used key words to pull specific statements out of the codes.<br>
+The key words I used are:<br>
+1. ATM-any statement/comment that has the word "ATM" in it, whether it be positive or negative.
+2. Fees-any statement/comment that has the word "fees" in it, whether it be positive or negative.
+3. Fraud-any statement/comment that has the word "fraud" in it, whether it be positive or negative.
+4. Investment- any statement/comment that has the word "investment" in it, whether it be positive or negative.
+5. Job- any statement/comment that has the word "job" in it, whether it be positive or negative.
+6. Online- any statement/comment that has the word "online" in it, whether it be positive or negative.
+7. Service- any statement/comment that has the word "service" in it, whether it be positive or negative.<br>
+These, instead of the labels, made it much more specific because instead of trying to read the labels and decide what they meant, (and maybe make mistakes while labeling them) and instead go through all of the data and automatically find anything with that specific word in it. This below is the main average sentiment score of all the banks.<br>
+<img src="http://i.imgur.com/F859mU9.png" alt="Average Sentiment Scores with Special Topics"><br>
+This is the code of how to find the average sentiment score of all the banks and how to split up the data with the code words.  </p>
+
+<pre><code>R  #Topics's Sentiment Scores
+ggplot(scores, aes(x=label, y=score, group=label)) +
+  geom_boxplot(aes(fill=label)) +
+  scale_fill_manual(values=cols) +
+  geom_jitter(colour="gray40",position=position_jitter(width=0.2), alpha=0.3) +
+  labs(title = "Topics's Sentiment Scores  of BankA") + 
+  xlab('Topic') + ylab('Sentiment Score')
+
+# barplot of average score
+meanscore = tapply(scores$score, scores$label, mean)
+df.plot = data.frame(label=names(meanscore), meanscore=meanscore)
+df.plot$labels &lt;- reorder(df.plot$label, df.plot$meanscore)
+
+ggplot(df.plot, aes(x = factor(labels), y = meanscore, fill=labels)) +
+  geom_bar(stat="identity") +
+  scale_fill_manual(values=cols[order(df.plot$meanscore)]) +
+  labs(title = "Topics's Average Sentiment Score  of BankA") + 
+  xlab('Topic') + ylab('Average Score')  
+</code></pre>
       </section>
 
       <footer>
