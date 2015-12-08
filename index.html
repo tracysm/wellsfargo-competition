@@ -1,41 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta charset="UTF-8">
     <title>Wellsfargo-competition by tracysm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
-    <div id="container">
-      <div class="inner">
+    <section class="page-header">
+      <h1 class="project-name">Wellsfargo-competition</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/tracysm/wellsfargo-competition" class="btn">View on GitHub</a>
+      <a href="https://github.com/tracysm/wellsfargo-competition/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/tracysm/wellsfargo-competition/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-        <header>
-          <h1>Wellsfargo-competition</h1>
-          <h2></h2>
-        </header>
+    <section class="main-content">
+      <h1>
+<a id="wells-fargo-competition" class="anchor" href="#wells-fargo-competition" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Wells Fargo Competition</strong>
+</h1>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/tracysm/wellsfargo-competition/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/tracysm/wellsfargo-competition/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/tracysm/wellsfargo-competition" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
+<h2>
+<a id="background-information" class="anchor" href="#background-information" aria-hidden="true"><span class="octicon octicon-link"></span></a><em>Background Information</em>
+</h2>
 
-        <hr>
-
-        <section id="main_content">
-          <p><strong>Wells Fargo Competition</strong><br>
-In this Wells Fargo Competition we were to separate the comments from the data we received from Wells Fargo that was online statements involving 4 Banks- <strong>Bank A, Bank B, Bank C, and Bank D</strong> from Twitter and Facebook.. Then, each was to be separated into <strong>positive</strong> or <strong>negative</strong> so it could be visible which bank had the most positive statements about it and which had the most negative statements about it. In society today, the internet and everything posted online is very important. A negative or positive statement about a bank can spread MUCH faster on social media rather than just spreading it by mouth. Different companies have to take this into consideration when trying to fix problems, understand the way their customers think about them, and understand how to attract more customers. The point of this website is to help companies understand what certain things about the companies are said in a positive or negative way and to help predict in the future what will be said, and what can be fixed.<br>
+<p>In this Wells Fargo Competition we were to separate the comments from the data we received from Wells Fargo that was online statements involving 4 Banks- <strong>Bank A, Bank B, Bank C, and Bank D</strong> from Twitter and Facebook.. Then, each was to be separated into <strong>positive</strong> or <strong>negative</strong> so it could be visible which bank had the most positive statements about it and which had the most negative statements about it. In society today, the internet and everything posted online is very important. A negative or positive statement about a bank can spread MUCH faster on social media rather than just spreading it by mouth. Different companies have to take this into consideration when trying to fix problems, understand the way their customers think about them, and understand how to attract more customers. The point of this website is to help companies understand what certain things about the companies are said in a positive or negative way and to help predict in the future what will be said, and what can be fixed.<br>
 This specific plot graph below shows the positive sentiment scores from each Bank. The higher the score, the more positive things said about the bank- *<em>Bank A *</em> being the highest. Also, here is some of the code used to create the plot graph.  </p>
 
-<pre><code>R meanscore = tapply(scores$score, scores$label, mean)
+<pre><code> meanscore = tapply(scores$score, scores$label, mean)
 df.plot = data.frame(label=names(meanscore), meanscore=meanscore)
 df.plot$labels &lt;- reorder(df.plot$label, df.plot$meanscore)
 
@@ -46,17 +41,17 @@ ggplot(df.plot, aes(x = factor(labels), y = meanscore, fill=labels)) +
   xlab('Topic') + ylab('Average Score')  
 </code></pre>
 
-<p><img src="http://imgur.com/DQ3hz4P" alt="Average Sentiment">
+<p><img src="http://i.imgur.com/DQ3hz4P.png" alt="Average Sentiment">
 Above is just the average sentiment score.. below is the negative sentiment score, putting <strong>Bank B</strong> at the highest, or the most negative comments.<br>
-<img src="http://imgur.com/vXfxtHu" alt="Average Neg Sentiment"><br>
+<img src="http://i.imgur.com/vXfxtHu.png" alt="Average Neg Sentiment"><br>
 Another thing we did that may have worked better if we had more time is labeling a random 1000, out of the hundreds of thousands of comments, by hand.<br>
 The labels I used are:<br>
 1. Spam- Spam will be taken out of the coding because it is unnecessary and not helpful in predicting whether someone will say something positive or negative about a bank.<br>
 2. Online- Online includes the many complaints or compliments about the apps, online banking, online checks, etc.<br>
 3. Money- A kind of vague label but includes anything to do with checks, deposits, ATMs, withdrawals, cash, etc.<br>
 4. Service- Anything to do with phone calls with a bank employee, long/short phone calls, long/short wait time, negative/positive comments about employees, responses from service back to customer, etc.<br>
-5. Fraud- Anything about money being taken out that wasn't supposed to, cards being compromised, fraud notifications, etc. Almost all fraud labels are negative.
-6. Job- Anything to do with a specific bank at a specific location or someone being hired/having an interview at a place.
+5. Fraud- Anything about money being taken out that wasn't supposed to, cards being compromised, fraud notifications, etc. Almost all fraud labels are negative.<br>
+6. Job- Anything to do with a specific bank at a specific location or someone being hired/having an interview at a place.<br>
 7. Promo- promoting a specific bank, building of bank, area bank is in, etc. Mostly positive comments.<br>
 So, to do this my group put 1000 statements about the Banks into a google document and went and read all 1000 of them and labeled them according to what we thought they would create. I think with more time this would've maybe worked if we could fix the code and maybe label more.<br>
 Instead, because this didn't work I used key words to pull specific statements out of the codes.<br>
@@ -72,34 +67,40 @@ These, instead of the labels, made it much more specific because instead of tryi
 <img src="http://i.imgur.com/F859mU9.png" alt="Average Sentiment Scores with Special Topics"><br>
 This is the code of how to find the average sentiment score of all the banks and how to split up the data with the code words.  </p>
 
-<pre><code>R  #Topics's Sentiment Scores
-ggplot(scores, aes(x=label, y=score, group=label)) +
-  geom_boxplot(aes(fill=label)) +
+<pre><code># boxplot
+library(ggplot2)
+#Bank's Sentiment Scores
+ggplot(scores, aes(x=bankid, y=score, group=bankid)) +
+  geom_boxplot(aes(fill=bankid)) +
   scale_fill_manual(values=cols) +
   geom_jitter(colour="gray40",position=position_jitter(width=0.2), alpha=0.3) +
-  labs(title = "Topics's Sentiment Scores  of BankA") + 
-  xlab('Topic') + ylab('Sentiment Score')
+  labs(title = "Bank's Sentiment Scores") + 
+  xlab('Bank') + ylab('Sentiment Score')
 
 # barplot of average score
-meanscore = tapply(scores$score, scores$label, mean)
-df.plot = data.frame(label=names(meanscore), meanscore=meanscore)
-df.plot$labels &lt;- reorder(df.plot$label, df.plot$meanscore)
+meanscore = tapply(scores$score, scores$bankid, mean)
+df.plot = data.frame(bankid=names(meanscore), meanscore=meanscore)
+df.plot$bankids &lt;- reorder(df.plot$bankid, df.plot$meanscore)
 
-ggplot(df.plot, aes(x = factor(labels), y = meanscore, fill=labels)) +
+ggplot(df.plot, aes(x = factor(bankids), y = meanscore, fill=bankids)) +
   geom_bar(stat="identity") +
   scale_fill_manual(values=cols[order(df.plot$meanscore)]) +
-  labs(title = "Topics's Average Sentiment Score  of BankA") + 
-  xlab('Topic') + ylab('Average Score')  
+  labs(title = "Average Sentiment Score") + 
+  xlab('Bank') + ylab('Average Score') 
 </code></pre>
-        </section>
 
-        <footer>
-          Wellsfargo-competition is maintained by <a href="https://github.com/tracysm">tracysm</a><br>
-          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
+<h1>
+<a id="bank-a" class="anchor" href="#bank-a" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Bank A</strong>
+</h1>
 
-        
-      </div>
-    </div>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/tracysm/wellsfargo-competition">Wellsfargo-competition</a> is maintained by <a href="https://github.com/tracysm">tracysm</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
