@@ -1,39 +1,82 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
     <title>Wellsfargo-competition by tracysm</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
+
   <body>
-    <section class="page-header">
-      <h1 class="project-name">Wellsfargo-competition</h1>
-      <h2 class="project-tagline"></h2>
-      <a href="https://github.com/tracysm/wellsfargo-competition" class="btn">View on GitHub</a>
-      <a href="https://github.com/tracysm/wellsfargo-competition/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/tracysm/wellsfargo-competition/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <a id="forkme_banner" href="https://github.com/tracysm/wellsfargo-competition">View on GitHub</a>
+    <div class="shell">
 
-    <section class="main-content">
-      <p>** Wells Fargo Competition**<br>
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Wellsfargo-competition</h1>
+            <h2></h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/tracysm/wellsfargo-competition/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/tracysm/wellsfargo-competition/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <p>** Wells Fargo Competition**<br>
 In this Wells Fargo Competition we were to separate the comments from the data we received from Wells Fargo that was online statements involving 4 Banks- <strong>Bank A, Bank B, Bank C, and Bank D</strong> from Twitter and Facebook.. Then, each was to be separated into <strong>positive</strong> or <strong>negative</strong> so it could be visible which bank had the most positive statements about it and which had the most negative statements about it. In society today, the internet and everything posted online is very important. A negative or positive statement about a bank can spread MUCH faster on social media rather than just spreading it by mouth. Different companies have to take this into consideration when trying to fix problems, understand the way their customers think about them, and understand how to attract more customers. The point of this website is to help companies understand what certain things about the companies are said in a positive or negative way and to help predict in the future what will be said, and what can be fixed.<br>
-This specific plot graph below shows the positive sentiment scores from each Bank. The higher the score, the more positive things said about the bank- <strong>Bank A ** being the highest. Also, here is the code used to create the plot graph.<br>
-<img src="http://imgur.com/DQ3hz4P" alt="">
-Above is just the average sentiment score.. below is the negative sentiment score, putting **Bank B</strong> at the highest, or the most negative comments.<br>
-<img src="http://imgur.com/vXfxtHu" alt=""></p>
+This specific plot graph below shows the positive sentiment scores from each Bank. The higher the score, the more positive things said about the bank- *<em>Bank A *</em> being the highest. Also, here is some of the code used to create the plot graph.<br>
+```R meanscore = tapply(scores$score, scores$label, mean)
+df.plot = data.frame(label=names(meanscore), meanscore=meanscore)
+df.plot$labels &lt;- reorder(df.plot$label, df.plot$meanscore)</p>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/tracysm/wellsfargo-competition">Wellsfargo-competition</a> is maintained by <a href="https://github.com/tracysm">tracysm</a>.</span>
+<p>ggplot(df.plot, aes(x = factor(labels), y = meanscore, fill=labels)) +
+  geom_bar(stat="identity") +
+  scale_fill_manual(values=cols[order(df.plot$meanscore)]) +
+  labs(title = "Topics's Average Sentiment Score") + 
+  xlab('Topic') + ylab('Average Score')-&gt; ```
+<img src="http://imgur.com/DQ3hz4P" alt="Average Sentiment">
+Above is just the average sentiment score.. below is the negative sentiment score, putting <strong>Bank B</strong> at the highest, or the most negative comments.<br>
+<img src="http://imgur.com/vXfxtHu" alt="Average Neg Sentiment"></p>
+      </section>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/tracysm">tracysm</a> can be found on <a href="https://github.com/tracysm/wellsfargo-competition">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
       </footer>
 
-    </section>
+    </div>
 
-  
+    
   </body>
 </html>
