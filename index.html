@@ -50,7 +50,7 @@ ggplot(df.plot, aes(x = factor(labels), y = meanscore, fill=labels)) +
   xlab('Topic') + ylab('Average Score')  
 </code></pre>
 
-<p><img src="http://imgur.com/DQ3hz4P" alt="Average Sentiment"><br>
+<p><img src="http://imgur.com/DQ3hz4P.png" alt="Average Sentiment"><br>
 Above is just the average sentiment score.. below is the negative sentiment score, putting <strong>Bank B</strong> at the highest, or the most negative comments.<br>
 <img src="http://i.imgur.com/vXfxtHu.png" alt="Average Neg Sentiment"><br>
 Another thing we did that may have worked better if we had more time is labeling a random 1000, out of the hundreds of thousands of comments, by hand.<br>
@@ -268,6 +268,106 @@ ggplot(label_neg, aes(x = factor(label), y = mean_neg, fill=label)) +
   labs(title = "Topics's Average Very Negative Sentiment Score of BankD") + 
   xlab('Topic') + ylab('Average Score')
 </code></pre>
+
+<h1>
+<a id="something-new" class="anchor" href="#something-new" aria-hidden="true"><span class="octicon octicon-link"></span></a><em>Something New..</em>
+</h1>
+
+<p>To me, one of the most important things I learned in Economics and just in general when searching for a bank to create a savings account with... was <strong>interest</strong>. So, for the part of this project as we had to incorporate our own code into this and create something new, I decided to add a new label or special word "Interest" so that it would search through the data to find positive and negative comments that have to do with interest. This is very important because it's letting the people who want to join a new Bank know whether or not the people that use this bank have good things to say about the interest or bad things to say. This can definitely make or break a decision. Below is the code I changed to add the label <strong>Interest</strong> in it.  </p>
+
+<pre><code># open load_filter_data.R
+
+# find messages with the topic 'atm'
+atm.idx = which(sapply(df$FullText,function(x) grepl("atm",x)))
+
+# find messages with the topic 'online'
+online1.idx = which(sapply(df$FullText,function(x) grepl("online",x)))
+online2.idx = which(sapply(df$FullText,function(x) grepl("app",x)))
+
+# find messages with the topic 'investment'
+investment1.idx = which(sapply(df$FullText,function(x) grepl("investor",x)))
+investment2.idx = which(sapply(df$FullText,function(x) grepl("investment",x)))
+
+# find messages with the topic 'fraud'
+fraud.idx = which(sapply(df$FullText,function(x) grepl("fraud",x)))
+
+# find messages with the topic 'service'
+service.idx = which(sapply(df$FullText,function(x) grepl("service",x)))
+
+# find messages with the topic 'fee'
+fee.idx = which(sapply(df$FullText,function(x) grepl("fee",x)))
+
+# find messages with the topic 'job'
+job1.idx = which(sapply(df$FullText,function(x) grepl("interview",x)))
+job2.idx = which(sapply(df$FullText,function(x) grepl("recruiting",x)))
+job3.idx = which(sapply(df$FullText,function(x) grepl("recruitment",x)))
+job4.idx = which(sapply(df$FullText,function(x) grepl("job",x)))
+
+#find messages with the topic 'interest'
+interest.idx = which(sapply(df$FullText,function(x) grepl("interest",x)))
+
+
+# Enter new column with topics
+
+# initialize with 'No'
+df$Label = "No"
+
+df$Label = "No"
+df$Label [atm.idx] = "ATM"
+df$Label [online2.idx] = "Online"
+df$Label [online1.idx] = "Online"
+df$Label [investment2.idx] = "Investment"
+df$Label [investment1.idx] = "Investment"
+df$Label [fraud.idx] = "Fraud"
+df$Label [service.idx] = "Service"
+df$Label [fee.idx] = "Fees"
+df$Label [job1.idx] = "Job"
+df$Label [job2.idx] = "Job"
+df$Label [job3.idx] = "Job"
+df$Label [job4.idx] = "Job"
+df$Label [interest.idx] = "Interest"
+
+
+
+
+# make new data frame withe the messages where we know the topic
+df_label &lt;- df[-which(df$Label=='No'), ]
+
+
+# remove the indexes 
+rm(atm.idx)
+rm(fee.idx)
+rm(fraud.idx)
+rm(investment1.idx)
+rm(investment2.idx)
+rm(job1.idx)
+rm(job2.idx)
+rm(job3.idx)
+rm(job4.idx)
+rm(online1.idx)
+rm(online2.idx)
+rm(service.idx)
+rm(interest.idx)  
+
+# Then, I went to sentiment_topic.R and made sure I added a color and name for the label Interest
+# colors
+cols = c("red", "yellow", "magenta", "cyan", "blue", "green", "gray", "orange")
+names(cols) = c("ATM", "Fees", "Fraud", "Investment","Job", "Online", "Service", "Interest")
+
+</code></pre>
+
+<p><img src="http://i.imgur.com/SgKtQYD.png" alt=""><br>
+Above is a picture of the Average Sentiment Scores for all banks with all labels including interest! As you can see interest is very high! Going the extra step and splitting these up Bank A- Bank D would definitely help you pick which bank you'd like to set up a savings account with and it would also help banks know if they've got the right idea- whether its a positive sentiment or negative sentiment.   </p>
+
+<p><img src="http://i.imgur.com/yL17uM1.png" alt=""><br>
+Above is the Average Very Positive Sentiment score for all banks including again interest! Interest is again very high in this chart, almost the highest and basically equal with Jobs. This is a very good thing.  </p>
+
+<p><img src="http://i.imgur.com/nylNIYr.png" alt=""><br>
+Now, above is the Average Very Negative Sentiment score for all banks with all labels and of course again including interest. Since this is about negative comments and negative sentiment, it is a very good thing that interest is so low. This can mean very good things for each of the banks.  </p>
+
+<h3>
+<a id="thanks-for-visiting-savannah-tracys-website" class="anchor" href="#thanks-for-visiting-savannah-tracys-website" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Thanks for Visiting Savannah Tracy's Website!</strong>
+</h3>
         </section>
 
         <aside id="sidebar">
